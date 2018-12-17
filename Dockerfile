@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-alpine3.8
 RUN mkdir /usr/local/certs
+RUN apk add --no-cache curl
 COPY .certificates/* /usr/local/certs/
 RUN keytool -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias rds-cert1 -file /usr/local/certs/rds-cert1.pem
 RUN keytool -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts -storepass changeit -noprompt -trustcacerts -importcert -alias rds-cert2 -file /usr/local/certs/rds-cert2.pem
